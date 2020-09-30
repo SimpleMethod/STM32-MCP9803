@@ -22,8 +22,6 @@
     }
     /* USER CODE END 3 */
 
-
-
 # Successfully tested on:
 - [x] H723ZG
 - [x] H743ZI
@@ -31,11 +29,9 @@
 - [x] F411RE
 - [x] G431KB
 
-
-
 # Address register:
 
-    MCP9803_DEFAULT_ADDRESS 0x48
+    MCP9803_DEFAULT_ADDRESS 0x48<<1
     MCP9803_CONFIG_REGISTER 0x01 //00000001U
     MCP9803_AMBIENT_TEMPERATURE_REGISTER 0x00 //00000000U
     MCP9803_HYSTERESIS_REGISTER 0x02 //00000010U
@@ -83,9 +79,6 @@
 | SYS         | Trace Asynchronous Sw | SYS_JTCK-SWCLK | PA14              |
 | SYS         | Trace Asynchronous Sw | SYS_JTDO-SWO   | PB3               |
 | SYS         | SysTick               | SYS_VS_Systick | VP_SYS_VS_Systick |
-| USART2      | Asynchronous          | USART2_RX      | PA3               |
-| USART2      | Asynchronous          | USART2_TX      | PA2               |
-
 
 ### **For using printf with float should be add flag -u _printf_float in C compiler**
 
