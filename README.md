@@ -6,20 +6,22 @@
 
 # Example:
 
-     /* USER CODE BEGIN 2 */
-     	mcp9803 = mcp9803_Init(&hi2c2, MCP9803_DEFAULT_ADDRESS, MCP9803_COMPARATOR_MODE, MCP9803_ALERT_POLARITY_DISABLED, MCP9803_FAULT_QUEUE_1, ADC_RESOLUTION_12_BIT, MCP9803_ONE_SHOT_DISABLED);
-     mcp9803_LoadConfig(&mcp9803);
-     /* USER CODE END 2 */
-     /* Infinite loop */
-     /* USER CODE BEGIN WHILE */
-    	while (1)
-    	{
-    	 printf("Temperature: %d \r\n",(int)mcp9803_GetTemperature(&mcp9803));
-    	 HAL_Delay(2000);
-    	 /* USER CODE END WHILE */
-       /* USER CODE BEGIN 3 */
-        }
-     /* USER CODE END 3 */
+    /* USER CODE BEGIN 2 */
+    mcp9803 = mcp9803_Init(&hi2c2, MCP9803_DEFAULT_ADDRESS, MCP9803_COMPARATOR_MODE,
+                           MCP9803_ALERT_POLARITY_DISABLED, MCP9803_FAULT_QUEUE_1,
+                           ADC_RESOLUTION_12_BIT, MCP9803_ONE_SHOT_DISABLED);
+    mcp9803_LoadConfig(&mcp9803);
+    /* USER CODE END 2 */
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1) {
+      printf("Temperature: %d \r\n", (int)mcp9803_GetTemperature(&mcp9803));
+      HAL_Delay(2000);
+      /* USER CODE END WHILE */
+      /* USER CODE BEGIN 3 */
+    }
+    /* USER CODE END 3 */
+
 
 
 # Successfully tested on:
