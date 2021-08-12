@@ -91,8 +91,6 @@ uint8_t mcp9803_ReadRawTemperature(MCP9803_HandleTypeDef *mcp9803)
 	uint8_t hal_status=HAL_I2C_Mem_Read(mcp9803->i2c_handle, mcp9803->device_address, MCP9803_AMBIENT_TEMPERATURE_REGISTER, 0x00000001U, data, 2, HAL_MAX_DELAY);
 	mcp9803->payload[0]=data[0];
 	mcp9803->payload[1]=data[1];
-	//mcp9803->raw =((tmp[0] << 8) | tmp[1]);
-	//mcp9803->temperature=((tmp[0] << 4) + (tmp[1] >> 4))/16.00;
 	return hal_status;
 }
 /*!
@@ -104,7 +102,15 @@ float mcp9803_GetTemperature(MCP9803_HandleTypeDef *mcp9803)
 {
 	if(mcp9803_ReadRawTemperature(mcp9803)==HAL_OK)
 	{
-		return ((mcp9803->payload[0] << 4) + (mcp9803->payload[1] >> 4))/16.00;
+		uint16_t temp = (mcp9803->payload[0] * 0x100 + (mcp9803->payload[1] & 0xF0));
+		 if (temp & 0b1000000000000000) {
+			 temp = (~temp) + 16;
+			 return ((temp >> 4)*(-0.0625));
+		 }
+		 else
+		 {
+			return ((temp >> 4)*(0.0625));
+		 }
 	}
 	return -1;
 }
